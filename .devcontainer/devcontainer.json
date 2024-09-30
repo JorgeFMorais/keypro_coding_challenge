@@ -19,7 +19,8 @@
 			"extensions": [
 				"ms-azuretools.vscode-docker",
 				"ms-python.python",
-				"ms-python.pylint"
+				"ms-python.pylint",
+				"tamasfe.even-better-toml"
 			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "bash"

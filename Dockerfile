@@ -6,6 +6,7 @@ RUN apk update \
         curl \
         git \
         openssl \
+        poetry \
         python3-dev \
         py3-pip
 

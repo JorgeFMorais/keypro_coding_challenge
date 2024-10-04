@@ -3,12 +3,11 @@
 {
 	"name": "Alpine",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"build": {
-		// Sets the run context to one level up instead of the .devcontainer folder.
-		"context": "..",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "../Dockerfile"
-	},
+    "service": "api",
+	// Use 'dockerFile' to use a Dockerfile for the container. Use 'dockerComposeFile' to use a Docker Compose file.
+	"dockerComposeFile": "docker-compose.yml",
+	// Workspace mount settings. "source" can be an absolute path or a path relative to the .devcontainer folder.
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
 	"mounts": [
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"

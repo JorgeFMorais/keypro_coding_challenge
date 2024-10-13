@@ -1,5 +1,5 @@
 services:
-  api:
+  django:
     build:
       context: ..
       dockerfile: Dockerfile

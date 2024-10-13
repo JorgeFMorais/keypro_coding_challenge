@@ -1,9 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-	"name": "Alpine",
+	"name": "Django Devcontainer",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "service": "api",
+    "service": "django",
 	// Use 'dockerFile' to use a Dockerfile for the container. Use 'dockerComposeFile' to use a Docker Compose file.
 	"dockerComposeFile": "docker-compose.yml",
 	// Workspace mount settings. "source" can be an absolute path or a path relative to the .devcontainer folder.

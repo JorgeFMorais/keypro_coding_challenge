@@ -1,8 +1,13 @@
+"""
+    Django Rest Framework views for the API
+"""
+
 from django.contrib.auth.models import User
-from api.models import PointOfInterest
+
 from rest_framework import permissions, viewsets
 
-from api.serializers import PointOfInterestSerializer, UserSerializer
+from api_app.models import PointOfInterest
+from api_app.serializers import PointOfInterestSerializer, UserSerializer
 
 class PointOfInterestViewSet(viewsets.ModelViewSet):
     """
@@ -10,7 +15,7 @@ class PointOfInterestViewSet(viewsets.ModelViewSet):
     """
     queryset = PointOfInterest.objects.all().order_by('-created_at')
     serializer_class = PointOfInterestSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class UserViewSet(viewsets.ModelViewSet):
     """

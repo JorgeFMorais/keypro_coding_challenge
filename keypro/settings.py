@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-z-e)5gsjvc78$m0i5+m_w$60@yk%)8nq=-de+hg+*qggo4dedd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -34,15 +34,15 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    'django.contrib.gis',
+    "django.contrib.gis",
     "django.contrib.sessions",
     "django.contrib.messages",
     'django.contrib.postgres',
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
-    'rest_framework_gis',
-    "api",
-    "web",
+    "rest_framework_gis",
+    "api_app"
 ]
 
 MIDDLEWARE = [
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "keypro.urls"
@@ -85,6 +86,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# CORS Settings
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
 
 
 # Database

@@ -15,7 +15,7 @@ class PointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = PointOfInterest
-        fields = ['name', 'description', 'lat', 'lon', 'created_at']
+        fields = ['id', 'name', 'description', 'lat', 'lon', 'created_at']
 
     def get_lat(self, obj):
         return obj.point.y  # Latitude is stored as y in PointField

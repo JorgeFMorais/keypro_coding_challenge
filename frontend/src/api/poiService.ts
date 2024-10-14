@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export interface POI {
+  id: number;
   name: string;
   description: string;
   lat: number;

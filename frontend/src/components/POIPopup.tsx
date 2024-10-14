@@ -18,9 +18,12 @@ const POIPopup: React.FC<POIPopupProps> = ({ poi }) => {
   return (
     <Popup>
       <div>
-        <h3>{poi.description}</h3>
-        <p>Created by: {poi.creator}</p>
-        <p>At: {poi.timestamp}</p>
+        <h3>{poi.name}</h3>
+        Description: {poi.description}<br/>
+        Latitude: {poi.lat}<br/>
+        Longitude: {poi.lon}<br/>
+        Created At: {poi.created_at}<br/>
+        <button onClick={handleDelete}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
       </div>
     </Popup>

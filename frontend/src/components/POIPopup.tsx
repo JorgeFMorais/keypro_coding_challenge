@@ -21,7 +21,7 @@ const POIPopup: React.FC<POIPopupProps> = ({ poi }) => {
         <h3>{poi.name}</h3>
         Description: {poi.description}<br/>
         Latitude: {poi.lat}<br/>
-        Longitude: {poi.lon}<br/><br/>
+        Longitude: {poi.lon}<br/>
         <button onClick={handleDelete}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
       </div>

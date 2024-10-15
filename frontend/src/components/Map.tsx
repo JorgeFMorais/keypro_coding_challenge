@@ -1,10 +1,12 @@
-import 'leaflet/dist/leaflet.css'
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import { fetchPOIs, addPOI, POI } from '../api/poiService.ts';
 import POIPopup from './POIPopup.tsx';
-
 
 /**
  * Map component that displays a map with Points of Interest (POIs).
@@ -34,6 +36,14 @@ import POIPopup from './POIPopup.tsx';
  * @returns {null} This component does not render anything.
  */
 const Map: React.FC = () => {
+  // Set up the default icon for markers
+  const DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+  });
+
+  L.Marker.prototype.options.icon = DefaultIcon;
+  
   const [pois, setPOIs] = useState<POI[]>([]);
 
   // Fetch POIs on component load
@@ -64,7 +74,7 @@ const Map: React.FC = () => {
   const position = [40.416775, -3.703790]
 
   return (
-    <MapContainer center={position} zoom={11} scrollWheelZoom={true} style={{ height: "100vh" }}>
+    <MapContainer center={position} zoom={7} scrollWheelZoom={true} style={{ height: "100vh" }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

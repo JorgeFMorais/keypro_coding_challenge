@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { addPOI, POI } from '../api/poiService.ts';
 
 interface POIFormProps {
-  onSubmit: (poi: Omit<POI, 'id' | 'creator' | 'timestamp'>) => void;
+  onSubmit: (poi: Omit<POI, 'id' | 'created_at'>) => void;
 }
 
 const POIForm: React.FC<POIFormProps> = ({ onSubmit }) => {
   const [description, setDescription] = useState('');
   const [lat, setLat] = useState<number | null>(null);
-  const [lng, setLng] = useState<number | null>(null);
+  const [lon, setLon] = useState<number | null>(null);
 
   const handleSubmit = () => {
-    if (lat && lng && description) {
-      onSubmit({ lat, lng, description });
+    if (lat && lon && description) {
+      onSubmit({ lat, lon, description });
     }
   };
 

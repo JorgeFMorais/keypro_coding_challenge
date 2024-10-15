@@ -74,7 +74,7 @@ const Map: React.FC = () => {
   const position = [40.416775, -3.703790]
 
   return (
-    <MapContainer center={position} zoom={7} scrollWheelZoom={true} style={{ height: "100vh" }}>
+    <MapContainer center={position} zoom={7} scrollWheelZoom={true} style={{ height: "80vh" }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

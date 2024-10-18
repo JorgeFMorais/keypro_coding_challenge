@@ -8,8 +8,11 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     """ Model to represent a users"""
+    USERNAME_FIELD="email"
+    REQUIRED_FIELDS=["username"]
+
     email = models.EmailField(unique=True)
-    
+
 
 class PointOfInterest(models.Model):
     """ Model to represent a point of interest """

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
 
 import Map from '../components/Map.tsx'
 
@@ -19,6 +20,46 @@ export default function Dashboard() {
 
   const [username, setUsername] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      if (accessToken) {
+        const config = {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`
+          }
+        };
+        const response = await axios.get('http://localhost:8000/api/user/', config)
+        setIsLoggedIn(true)
+        setUsername(response.data.username)
+      }
+      else {
+        setIsLoggedIn(false)
+        setUsername('')
+      }
+    } catch (error) {
+      console.error("Error during login", error.response?.data)
+      setIsLoggedIn(false)
+      setUsername('')
+    }
+  }, []);
+
+  const handleLogout = async () => {
+    const refreshToken = localStorage.getItem('refreshToken')
+    if (refreshToken) {
+      try {
+        const response = await axios.post('http://localhost:8000/api/logout/', { refresh: refreshToken })
+        console.log("Success", response)
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        setIsLoggedIn(false)
+        setUsername('')
+      } catch (error) {
+        console.error("Error during logout", error.response?.data)
+      }
+    }
+  };
 
   return (
     <>

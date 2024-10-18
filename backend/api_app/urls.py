@@ -28,5 +28,6 @@ urlpatterns = [
     path('logout/', api_views.UserLogoutView.as_view(), name='logout'),
     path('register/', api_views.UserRegistrationView.as_view(), name='register'),
     path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
-    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
+    path('user/', api_views.UserInfoView.as_view(), name='user-info')
 ]

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -11,10 +11,15 @@ const user = {
 }
 
 const userNavigation = [
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign in', href: '/login' },
+  { name: 'Sign out', href: '/logout' },
 ]
 
 export default function Dashboard() {
+
+  const [username, setUsername] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   return (
     <>
       {/*

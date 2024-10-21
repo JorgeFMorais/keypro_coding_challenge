@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { login } from '../api/authService.ts';
 
 /*
   This example requires some changes to your config:
@@ -10,7 +10,7 @@ export default function Login() {
       password: '',
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
       setFormData({
           ...formData,
           [e.target.name]: e.target.value,
@@ -19,7 +19,6 @@ export default function Login() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -29,15 +28,13 @@ export default function Login() {
         }
 
         setIsLoading(true)
-        setSuccessMessage(null)
         setErrorMessage(null)
 
         try {
-            const response = await axios.post('http://localhost:8000/api/login/', formData)
+            const response = await login(formData.email, formData.password)
             console.log("Success", response)
-            setSuccessMessage("Login successful")
-            localStorage.setItem('accessToken', response.data.tokens.access)
-            localStorage.setItem('refreshToken', response.data.tokens.refresh)
+            localStorage.setItem('accessToken', response.access)
+            localStorage.setItem('refreshToken', response.refresh)
         } catch (error) {
             console.error("Error during login", error.response?.data)
             if (error.response && error.response.data) {

@@ -13,7 +13,8 @@ const user = {
 
 const userNavigation = [
   { name: 'Sign in', href: '/login' },
-  { name: 'Sign out', href: '/logout' },
+  { name: 'Register', href: '/register' },
+  // { name: 'Sign out', href: '/logout' },
 ]
 
 export default function Dashboard() {
@@ -22,27 +23,31 @@ export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    try {
-      const accessToken = localStorage.getItem('accessToken')
-      if (accessToken) {
-        const config = {
-          headers: {
-            "Authorization": `Bearer ${accessToken}`
-          }
-        };
-        const response = await axios.get('http://localhost:8000/api/user/', config)
-        setIsLoggedIn(true)
-        setUsername(response.data.username)
-      }
-      else {
+    const logged = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken')
+        if (accessToken) {
+          const config = {
+            headers: {
+              "Authorization": `Bearer ${accessToken}`
+            }
+          };
+          const response = await axios.get('http://localhost:8000/api/user/', config)
+          setIsLoggedIn(true)
+          setUsername(response.data.username)
+        }
+        else {
+          setIsLoggedIn(false)
+          setUsername('')
+        }
+      } catch (error) {
+        console.error("Error during login", error.response?.data)
         setIsLoggedIn(false)
         setUsername('')
       }
-    } catch (error) {
-      console.error("Error during login", error.response?.data)
-      setIsLoggedIn(false)
-      setUsername('')
     }
+
+    logged()
   }, []);
 
   const handleLogout = async () => {

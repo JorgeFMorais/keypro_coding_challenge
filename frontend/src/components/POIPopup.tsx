@@ -1,5 +1,6 @@
 import React from 'react';
 import { Popup } from 'react-leaflet';
+
 import { POI, deletePOI } from '../api/poiService.ts';
 
 interface POIPopupProps {

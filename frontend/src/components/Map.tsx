@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -74,7 +74,7 @@ const Map: React.FC = () => {
   const position = [40.416775, -3.703790]
 
   return (
-    <MapContainer center={position} zoom={7} scrollWheelZoom={true} style={{ height: "80vh" }}>
+    <MapContainer center={position} zoom={6} scrollWheelZoom={true} style={{ height: "80vh" }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -84,6 +84,7 @@ const Map: React.FC = () => {
           <POIPopup poi={poi} />
         </Marker>
       ))}
+      <MapClickHandler />
     </MapContainer>
   );
 };

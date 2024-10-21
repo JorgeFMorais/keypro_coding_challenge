@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { register } from '../api/authService.ts';
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -18,7 +18,6 @@ export default function Register() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -28,13 +27,11 @@ export default function Register() {
         }
 
         setIsLoading(true)
-        setSuccessMessage(null)
         setErrorMessage(null)
 
         try {
-            const response = await axios.post('http://localhost:8000/api/register/', formData)
+            const response = await register(formData.username, formData.email, formData.password1, formData.password2)
             console.log("Success", response)
-            setSuccessMessage("Registration successful")
         } catch (error) {
             console.error("Error during registration", error.response?.data)
             if (error.response && error.response.data) {
@@ -168,7 +165,7 @@ export default function Register() {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Already a member?{' '}
-              <a href="/" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <a href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Sign in here
               </a>
             </p>
